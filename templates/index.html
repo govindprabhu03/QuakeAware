@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QuakeAware — Know your earthquake risk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body data-state="solar">
+  <canvas id="bg"></canvas>
+  <div class="overlay"></div>
+
+  <!-- INTRO (solar system phase) -->
+  <div id="intro">
+    <div class="logo">🌌 QUAKEAWARE</div>
+    <p class="tagline">A living map of Earth's restless crust</p>
+    <div class="hint">
+      <span class="pulse-dot"></span>
+      Click the <b>Earth</b> to begin
+    </div>
+    <button id="skip" class="link">skip intro ▸</button>
+  </div>
+
+  <!-- GLOBE phase UI -->
+  <div id="app">
+    <header>
+      <div class="logo small">🌌 QUAKEAWARE</div>
+    </header>
+
+    <section class="search glass">
+      <input id="address" type="text" placeholder="Search a city or address — e.g. Tokyo, Japan" />
+      <div class="controls">
+        <label>Radius
+          <select id="radius">
+            <option value="100">100 km</option>
+            <option value="200" selected>200 km</option>
+            <option value="300">300 km</option>
+            <option value="500">500 km</option>
+          </select>
+        </label>
+        <label>History
+          <select id="years">
+            <option value="10">10 yrs</option>
+            <option value="30" selected>30 yrs</option>
+            <option value="50">50 yrs</option>
+          </select>
+        </label>
+        <button id="go">◈ Analyze</button>
+        <button id="locate" class="ghost">📍 My location</button>
+      </div>
+    </section>
+
+    <p id="status" class="status"></p>
+
+    <main id="results" class="hidden">
+      <div class="grid">
+        <div class="card glass score-card">
+          <div id="gauge" class="gauge"><span id="score">0</span><small>/100</small></div>
+          <div id="level" class="level">—</div>
+          <div id="place" class="place"></div>
+        </div>
+        <div class="card glass stats">
+          <div class="stat"><span id="count">0</span><label>quakes (M2.5+)</label></div>
+          <div class="stat"><span id="largest">—</span><label>largest magnitude</label></div>
+          <div class="stat"><span id="fault">—</span><label>nearest fault (km)</label></div>
+          <div id="faultname" class="faultname"></div>
+        </div>
+      </div>
+
+      <div id="map" class="glass"></div>
+
+      <div class="grid">
+        <div class="card glass">
+          <h2>✅ Your preparedness checklist</h2>
+          <ul id="checklist"></ul>
+        </div>
+        <div class="card glass">
+          <h2>🕑 Recent significant quakes nearby</h2>
+          <ul id="recent" class="recent"></ul>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      Data: <a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener">USGS</a> &amp;
+      <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a> ·
+      Risk scores are educational estimates, not an official hazard assessment.
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="{{ url_for('static', filename='galaxy.js') }}"></script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "quakeaware",
+      "runtimeExecutable": "py",
+      "runtimeArgs": ["-3.12", "app.py"],
+      "port": 5000
+    }
+  ]
+}
