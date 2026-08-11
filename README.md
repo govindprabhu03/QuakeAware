@@ -2,6 +2,10 @@
 
 **Know your earthquake risk — with data, not guesswork.**
 
+### 🚀 [**Live Demo → quakeaware-lf4j.onrender.com**](https://quakeaware-lf4j.onrender.com)
+
+> ⏳ Hosted on Render's free tier — the first load after a while may take ~30–50s to wake up, then it's fast.
+
 Type any city or address and get a plain-language earthquake risk profile: a 0–100
 risk score, recent significant quakes nearby on a map, distance to the nearest major
 fault system, and a preparedness checklist scaled to your risk level.
